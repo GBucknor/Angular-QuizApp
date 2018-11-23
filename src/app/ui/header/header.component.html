@@ -1,0 +1,17 @@
+<nav class="navbar navbar-dark bg-dark mb-5">
+  <a class="navbar-brand" href="/">Quiz App</a>
+  <div class="navbar-expand mr-auto">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" routerLink="">Home</a>
+    </div>
+  </div>
+  <div class="navbar-expand ml-auto navbar-nav">
+    <div *ngIf="!loggedIn" class="navbar-nav">
+      <!-- <a class="nav-item nav-link" routerLink="register">Register</a> -->
+      <a class="nav-item nav-link" routerLink="login">Login</a>
+    </div> -->
+    <div *ngIf="loggedIn" class="navbar-nav">
+      <a class="nav-item nav-link" (click)="logOut()" href="#">Logout</a>
+    </div>
+  </div>
+</nav>

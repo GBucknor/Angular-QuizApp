@@ -1,0 +1,18 @@
+<div id="quiz" class="text-center">
+  <h1>{{ quiz$.quizName }}</h1>
+  <h3>{{ quiz$.quizDescription }}</h3>
+
+  <div *ngFor="let question of questions$">
+    <h4>{{ question.questionContent }}</h4>
+    <div *ngFor="let answer of answers$[question.questionId]">
+      <label><input type="radio" name="{{ question.questionId }}" value="{{ answer.answerText }}" />{{ answer.answerText }}</label>
+    </div>
+  </div>
+  <button id="submit" class="btn btn-primary" (click)="submitQuiz()" data-toggle="modal" data-target="#exampleModal" >Submit</button>
+</div>
+
+<div id="result-container" class="text-center" hidden>
+  <h2>Your got:</h2>
+  <h3 id="results"></h3>
+  <button class="btn btn-outline-dark" routerLink="">Back to Homepage</button>
+</div>

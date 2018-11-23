@@ -1,0 +1,18 @@
+<div class="text-center">
+  <h1>Quiztastic</h1>
+  <button class="btn btn-outline-dark" routerLink="create">Create Quiz</button>
+  <br />
+  <br />
+  <div class="row card-group">
+    <div class="col-4" *ngFor="let quiz of quizzes$">
+      <div class="card border-primary">
+        <div class="card-body text-primary">
+          <h5 class="card-title">{{ quiz.quizName }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Number of questions: {{ quiz.numberOfQuestions }}</h6>
+          <p class="card-text">{{ quiz.quizDescription }}</p>
+          <a class="btn btn-outline-primary" routerLink="/quiz/{{ quiz.quizId }}">Take Quiz</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
