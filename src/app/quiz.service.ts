@@ -32,6 +32,13 @@ export class QuizService {
     return this.http.post(this.url + 'api/quizzes', model)
   }
 
+  addQuizImage(quizId, image) {
+    let formData = new FormData()
+    formData.append("",image)
+    console.log(image)
+    return this.http.post(this.url + 'api/quizzes/badge/' + quizId, formData)
+  }
+
   addQuestion(model) {
     return this.http.post(this.url + 'api/questions', model)
   }

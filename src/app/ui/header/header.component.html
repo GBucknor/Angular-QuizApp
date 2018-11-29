@@ -8,7 +8,8 @@
   <div class="navbar-expand ml-auto navbar-nav">
     <div *ngIf="!loggedIn" class="navbar-nav">
       <!-- <a class="nav-item nav-link" routerLink="register">Register</a> -->
-      <a class="nav-item nav-link" routerLink="login">Login</a>
+      <!-- <a class="nav-item nav-link" (click)="logIn()" href="#">Login</a> -->
+      <a class="nav-item nav-link" routerLink="login" href="#">Login</a>
     </div> -->
     <div *ngIf="loggedIn" class="navbar-nav">
       <a class="nav-item nav-link" (click)="logOut()" href="#">Logout</a>

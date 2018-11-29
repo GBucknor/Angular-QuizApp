@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuizService } from '../quiz.service';
 import { Observable } from 'rxjs';
 import * as $ from 'jquery';
+import Popper from 'popper.js';
 
 @Component({
   selector: 'app-create',
@@ -12,12 +13,19 @@ export class CreateComponent implements OnInit {
 
   quizQuestions: Array<any>
   qBox: any
+  selectedImage: File
 
   constructor(private data: QuizService) { }
 
   ngOnInit() {
     this.qBox = document.getElementById("question-box");
     this.quizQuestions = []
+  }
+
+  onFileChanged(event) {
+    this.selectedImage = event.target.files[0]
+    document.getElementById('image-btn').innerHTML = this.selectedImage.name
+    console.log(this.selectedImage)
   }
 
   addQuestion() {
@@ -53,9 +61,19 @@ export class CreateComponent implements OnInit {
       $(cln).attr("id", currentNum);
       cln.appendChild(editBtn);
       cln.appendChild(delBtn);
+      // let collapseBtn = document.createElement("button");
+      // collapseBtn.classList.add("btn");
+      // collapseBtn.classList.add("btn-outline-primary");
+      // $(collapseBtn).attr("type", "button");
+      // $(collapseBtn).attr("data-toggle", "collapse");
+      // $(collapseBtn).attr("data-target", "#" + currentNum);
+      // $(collapseBtn).attr("aria-expanded", "false");
+      // $(collapseBtn).attr("aria-controls", currentNum);
+      // $(collapseBtn).attr("id", "collapse-" + currentNum);
+      // $(collapseBtn).html("Show Question");
+      // $(cln).attr("class", "collapse");
+      //document.getElementById("created-questions").appendChild(collapseBtn);
       document.getElementById("created-questions").appendChild(cln);
-      $("#" + currentNum).find(".easy").attr('name', currentNum);
-      $("#" + currentNum).find(".hard").attr('name', currentNum);
   }
 
   editQuestion(id)
@@ -67,6 +85,7 @@ export class CreateComponent implements OnInit {
       this.quizQuestions[id]["wrong3"] = $("#" + id).find(".w_ans3").val();
   }
 
+  // Warning Horrible Implementation ahead
   storeQuiz() {
     //let spinner = document.getElementsByClassName("loader");
     //$(spinner[0]).css("display", "inline-block");
@@ -78,41 +97,54 @@ export class CreateComponent implements OnInit {
     }
     this.data.addQuiz(quiz).subscribe((data) => {
       quizId = data['quizId']
-      for (let index = 0;index < this.quizQuestions.length;++index) {
-        let quesId
-        let quesStr = this.quizQuestions[index];
-        let question = {
-          'questionContent': quesStr.question,
-          'quizId': quizId
-        }
-        this.data.addQuestion(question).subscribe((data) => {
-          quesId = data['questionId']
-          let correctAns = {
-            'answerText': quesStr.correct,
-            'questionId': quesId,
-            'isCorrect': true
-          }
-          this.data.addAnswer(correctAns).subscribe(data => {})
-          let wrongAns1 = {
-            'answerText': quesStr.wrong1,
-            'questionId': quesId,
-            'isCorrect': false
-          }
-          this.data.addAnswer(wrongAns1).subscribe(data => {})
-          let wrongAns2 = {
-            'answerText': quesStr.wrong2,
-            'questionId': quesId,
-            'isCorrect': false
-          }
-          this.data.addAnswer(wrongAns2).subscribe(data => {})
-          let wrongAns3 = {
-            'answerText': quesStr.wrong3,
-            'questionId': quesId,
-            'isCorrect': false
-          }
-          this.data.addAnswer(wrongAns3).subscribe(data => {})
-        })
-      }
+      this.uploadImage(quizId)
+      this.storeQuestions(quizId)
     })
+  }
+
+  // Calls the badge upload request in the quiz service.
+  uploadImage(quizId) {
+    this.data.addQuizImage(quizId, this.selectedImage).subscribe((data) => {
+      console.log(data)
+    })
+  }
+
+  // 
+  storeQuestions(quizId) {
+    for (let index = 0;index < this.quizQuestions.length;++index) {
+      let quesId
+      let quesStr = this.quizQuestions[index];
+      let question = {
+        'questionContent': quesStr.question,
+        'quizId': quizId
+      }
+      this.data.addQuestion(question).subscribe((data) => {
+        quesId = data['questionId']
+        let correctAns = {
+          'answerText': quesStr.correct,
+          'questionId': quesId,
+          'isCorrect': true
+        }
+        this.data.addAnswer(correctAns).subscribe(data => {})
+        let wrongAns1 = {
+          'answerText': quesStr.wrong1,
+          'questionId': quesId,
+          'isCorrect': false
+        }
+        this.data.addAnswer(wrongAns1).subscribe(data => {})
+        let wrongAns2 = {
+          'answerText': quesStr.wrong2,
+          'questionId': quesId,
+          'isCorrect': false
+        }
+        this.data.addAnswer(wrongAns2).subscribe(data => {})
+        let wrongAns3 = {
+          'answerText': quesStr.wrong3,
+          'questionId': quesId,
+          'isCorrect': false
+        }
+        this.data.addAnswer(wrongAns3).subscribe(data => {})
+      })
+    }
   }
 }

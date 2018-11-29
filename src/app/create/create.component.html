@@ -1,38 +1,47 @@
-<h2>Quiz Name</h2>
-<input class="form-control" type="text" name="quiz_name" id="quiz_name" />
+<div class="text-center">
+    <h2>Quiz Name</h2>
+    <input class="form-control" type="text" name="quiz_name" id="quiz_name" />
 
-<h3>Quiz Description</h3>
-<input class="form-control" type="text" name="quiz_desc" id="quiz_desc" />
+    <h3>Quiz Description</h3>
+    <input class="form-control" type="text" name="quiz_desc" id="quiz_desc" />
+    <br />
+    <input #imageInput
+        style="display:none"
+        type="file"
+        (change)="onFileChanged($event)">
+    <button id="image-btn" class="btn btn-outline-dark" (click)="imageInput.click()">Select an Image</button>
 
-<h2>Questions</h2>
-<div id="db-questions"></div>
-<div id="created-questions"></div>
-<h3>Add a Question to the Quiz</h3>
-<div id="question-box">
-    <div class="form-group">
-        <textarea class="edit_ques form-control" rows="2" placeholder="Question"></textarea>
+    <h2>Questions</h2>
+    <div id="db-questions"></div>
+    <div id="created-questions"></div>
+    <h3>Add a Question to the Quiz</h3>
+    <div id="question-box">
+        <div class="form-group">
+            <textarea class="edit_ques form-control" rows="2" placeholder="Question"></textarea>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <input type="text" class="c_ans form-control" placeholder="Correct Answer" />
+            </div>
+            <div class="form-group col">
+                <input type="text" class="w_ans1 form-control" placeholder="Wrong Answer 1" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <input type="text" class="w_ans2 form-control" placeholder="Wrong Answer 2" />
+            </div>
+            <div class="form-group col">
+                <input type="text" class="w_ans3 form-control" placeholder="Wrong Answer 3" />
+            </div>
+        </div>
     </div>
-    <div class="form-row">
-        <div class="form-group col">
-            <input type="text" class="c_ans form-control" placeholder="Correct Answer" />
-        </div>
-        <div class="form-group col">
-            <input type="text" class="w_ans1 form-control" placeholder="Wrong Answer 1" />
-        </div>
+    <div class="btn-group" role="group">
+        <button id="add" class="btn btn-outline-success" (click)="addQuestion()">Add</button>
+        <button id="save-quiz" class="btn btn-success" (click)="storeQuiz()">Save Quiz</button>
     </div>
-    <div class="form-row">
-        <div class="form-group col">
-            <input type="text" class="w_ans2 form-control" placeholder="Wrong Answer 2" />
-        </div>
-        <div class="form-group col">
-            <input type="text" class="w_ans3 form-control" placeholder="Wrong Answer 3" />
-        </div>
+    <div>
+        <small>Remember to click save before leaving the page!</small>
     </div>
+    <div class="loader"></div>
 </div>
-<button id="add" class="btn btn-success" (click)="addQuestion()">Add</button>
-<button id="save-quiz" class="btn btn-success" (click)="storeQuiz()">Save Quiz</button>
-<button id="delete-all" class="btn btn-danger">Delete Database Questions</button>
-<div>
-    <small>Remember to click save before leaving the page!</small>
-</div>
-<div class="loader"></div>

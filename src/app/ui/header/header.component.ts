@@ -16,6 +16,14 @@ export class HeaderComponent implements OnInit {
       // logged in so return true
       this.loggedIn = true;
     }
+    // } else {
+    //   let url = window.location.href
+    //   console.log(url.split('?t=')[1])
+    // }
+  }
+
+  logIn() {
+    window.location.href = "https://badgebookfront.azurewebsites.net/#/login/666";
   }
 
   logOut() {
