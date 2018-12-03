@@ -1,9 +1,9 @@
 <div class="text-center">
     <h2>Quiz Name</h2>
-    <input class="form-control" type="text" name="quiz_name" id="quiz_name" />
+    <input class="form-control" type="text" name="quiz_name" id="quiz_name" required/>
 
     <h3>Quiz Description</h3>
-    <input class="form-control" type="text" name="quiz_desc" id="quiz_desc" />
+    <input class="form-control" type="text" name="quiz_desc" id="quiz_desc" required/>
     <br />
     <input #imageInput
         style="display:none"
@@ -40,7 +40,7 @@
         <button id="add" class="btn btn-outline-success" (click)="addQuestion()">Add</button>
         <button id="save-quiz" class="btn btn-success" (click)="storeQuiz()">Save Quiz</button>
     </div>
-    <div>
+    <div class="reminder">
         <small>Remember to click save before leaving the page!</small>
     </div>
     <div class="loader"></div>
