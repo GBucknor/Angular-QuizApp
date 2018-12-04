@@ -6,6 +6,10 @@
   margin-bottom: 10%;
 }
 
+.quizHeader {
+  margin: 3%;
+}
+
 /* For mobile phones: */
 @media only screen and (max-width: 768px) {
   .text-center {
