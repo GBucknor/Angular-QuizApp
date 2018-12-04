@@ -9,7 +9,8 @@
     <div *ngIf="!loggedIn" class="navbar-nav">
       <!-- <a class="nav-item nav-link" routerLink="register">Register</a> -->
       <!-- <a class="nav-item nav-link" (click)="logIn()" href="#">Login</a> -->
-      <a class="nav-item nav-link" routerLink="login" href="#">Login</a>
+      <!-- <a class="nav-item nav-link" routerLink="login" href="#">Login</a> -->
+      <a class="nav-item nav-link" id="login_link" href="https://badgebookfront.azurewebsites.net/#/login/aa154de2-a70f-4891-abce-37ce2d365ccb">Login</a>
     </div>
     <div *ngIf="loggedIn" class="navbar-nav">
       <a class="nav-item nav-link" (click)="logOut()" href="#">Logout</a>

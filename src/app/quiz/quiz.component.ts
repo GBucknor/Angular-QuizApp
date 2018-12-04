@@ -61,9 +61,9 @@ export class QuizComponent implements OnInit {
     this.data.checkUserScore(rank).subscribe(data => {
       if (!('NotFound' in data)) {
         rank["rankId"] = data["rankId"]
-        this.data.updateUserScore(rank).subscribe(data => {})
+        //this.data.updateUserScore(rank).subscribe(data => {})
       } else {
-        this.data.storeUserScore(rank).subscribe(data => {})
+        //this.data.storeUserScore(rank).subscribe(data => {})
       }
     })
   }

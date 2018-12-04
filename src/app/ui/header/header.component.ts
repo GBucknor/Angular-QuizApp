@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,13 @@ import { AuthService } from '../../auth.service';
 export class HeaderComponent implements OnInit {
   loggedIn = false
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      const token = params['t']
+      console.log(token)
+    })
     if (localStorage.getItem('currentUser')) {
       // logged in so return true
       this.loggedIn = true;
@@ -20,10 +25,6 @@ export class HeaderComponent implements OnInit {
     //   let url = window.location.href
     //   console.log(url.split('?t=')[1])
     // }
-  }
-
-  logIn() {
-    window.location.href = "https://badgebookfront.azurewebsites.net/#/login/666";
   }
 
   logOut() {

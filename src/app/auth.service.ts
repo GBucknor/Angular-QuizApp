@@ -6,9 +6,10 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+
     url = "https://qtastic.azurewebsites.net/"
-  constructor(private http: HttpClient) { }
-  login(username: string, password: string) {
+    constructor(private http: HttpClient) { }
+    login(username: string, password: string) {
     return this.http.post<any>(this.url + "login", { userName: username, password: password })
         .pipe(map(user => {
             // login successful if there's a jwt token in the response
@@ -19,10 +20,10 @@ export class AuthService {
 
             return user;
         }));
-  }
+    }
 
-  logout() {
-      // remove user from local storage to log user out
-      localStorage.removeItem('currentUser');
-  }
+    logout() {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+    }
 }
