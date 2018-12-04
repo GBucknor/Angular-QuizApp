@@ -3,6 +3,7 @@ import { QuizService } from '../quiz.service';
 import { Observable } from 'rxjs';
 import * as $ from 'jquery';
 import Popper from 'popper.js';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -15,7 +16,7 @@ export class CreateComponent implements OnInit {
   qBox: any
   selectedImage: File
 
-  constructor(private data: QuizService) { }
+  constructor(private data: QuizService, private router: Router) { }
 
   ngOnInit() {
     this.qBox = document.getElementById("question-box");
@@ -100,6 +101,7 @@ export class CreateComponent implements OnInit {
       this.uploadImage(quizId)
       this.storeQuestions(quizId)
     })
+    this.router.navigate([''])
   }
 
   // Calls the badge upload request in the quiz service.
