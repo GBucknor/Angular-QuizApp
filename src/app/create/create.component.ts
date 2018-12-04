@@ -111,6 +111,37 @@ export class CreateComponent implements OnInit {
     })
   }
 
+  quizValidation()
+  {
+    if(this.checkQuizName() && this.checkQuizDesc() == true){
+      this.storeQuiz()
+    } else {
+      console.log("something broke to reach here")
+    }
+  }
+
+  // Checks to see if quiz name is empty
+  checkQuizName()
+  {
+    let check = $('#quiz_name').val()
+    if(check) {
+      return true
+     } else {
+       confirm("Add a name")
+     }
+  }
+
+  // Checks to see if quiz description is empty
+  checkQuizDesc()
+  {
+    let check = $('#quiz_desc').val()
+    if(check) {
+      return true
+     } else {
+       confirm("Add a Description")
+     }
+  }
+
   // 
   storeQuestions(quizId) {
     for (let index = 0;index < this.quizQuestions.length;++index) {
