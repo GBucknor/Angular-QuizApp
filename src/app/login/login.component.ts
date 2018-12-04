@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
         .subscribe(
             data => {
               console.log(data)
+              //localStorage.setItem('user', JSON.stringify($('#user').val()));
               window.location.replace("https://quiztastic.azurewebsites.net");
               //window.location.replace('http://localhost:4200');
             });
