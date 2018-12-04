@@ -55,7 +55,7 @@ export class CreateComponent implements OnInit {
           this.editQuestion(currentNum);
       });
       delBtn.addEventListener("click", () => {
-          this.deleteQuestion(currentNum);
+          //this.deleteQuestion(currentNum);
       });
       editBtn.innerHTML = "Edit";
       delBtn.innerHTML = "Delete";

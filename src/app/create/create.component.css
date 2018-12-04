@@ -2,6 +2,10 @@
   margin-bottom: 5%;
 }
 
+.text-center {
+  margin-bottom: 10%;
+}
+
 /* For mobile phones: */
 @media only screen and (max-width: 768px) {
   .text-center {
