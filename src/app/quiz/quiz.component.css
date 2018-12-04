@@ -1,13 +1,6 @@
-.reminder {
-  margin-bottom: 5%;
-}
-
 /* For mobile phones: */
 @media only screen and (max-width: 768px) {
   .text-center {
     margin-bottom: 20%;
-  }
-  .form-row {
-    display: block;
   }
 }

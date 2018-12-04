@@ -16,7 +16,7 @@ export class CreateComponent implements OnInit {
   qBox: any
   selectedImage: File
 
-  constructor(private data: QuizService, private router: Router) { }
+  constructor(private data: QuizService, private router: Router) {}
 
   ngOnInit() {
     this.qBox = document.getElementById("question-box");
