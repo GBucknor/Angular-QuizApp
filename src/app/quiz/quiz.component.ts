@@ -54,16 +54,29 @@ export class QuizComponent implements OnInit {
     })
     let rank = {
       "quizScore": mark,
-      "userId": JSON.parse(localStorage.getItem('currentUser'))['user'],
+      "badgeBookId": JSON.parse(localStorage.getItem('currentUser'))['user'],
       "quizId": this.quiz$.quizId
     }
-    console.log(rank)
     this.data.checkUserScore(rank).subscribe(data => {
-      if (!('NotFound' in data)) {
+      if (!('notFound' in data)) {
         rank["rankId"] = data["rankId"]
-        //this.data.updateUserScore(rank).subscribe(data => {})
+        console.log(data)
+        console.log(rank)
+        this.data.updateUserScore(rank).subscribe(data => {})
       } else {
-        //this.data.storeUserScore(rank).subscribe(data => {})
+        this.data.storeUserScore(rank).subscribe((data) => {
+          this.data.getUserRank(rank.quizId, rank.badgeBookId).subscribe(data => {
+            let badge = {
+              'UID': JSON.parse(localStorage.getItem('currentUser'))['user'],
+              'ImageURL': "https://quiztastic.azurewebsites.net/quiztastic-logo.png",
+              'BadgeName': this.quiz$.quizName,
+              'BadgeDescription': data["rank"]
+            }
+            this.data.postBadge(badge).subscribe(data => {
+              console.log(data)
+            })
+          })
+        })
       }
     })
   }

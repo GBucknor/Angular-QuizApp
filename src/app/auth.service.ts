@@ -7,20 +7,20 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-    url = "https://qtastic.azurewebsites.net/"
-    constructor(private http: HttpClient) { }
-    login(username: string, password: string) {
-    return this.http.post<any>(this.url + "login", { userName: username, password: password })
-        .pipe(map(user => {
-            // login successful if there's a jwt token in the response
-            if (user && user.token) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
-            }
+    // url = "https://qtastic.azurewebsites.net/"
+    // constructor(private http: HttpClient) { }
+    // login(username: string, password: string) {
+    // return this.http.post<any>(this.url + "login", { userName: username, password: password })
+    //     .pipe(map(user => {
+    //         // login successful if there's a jwt token in the response
+    //         if (user && user.token) {
+    //             // store user details and jwt token in local storage to keep user logged in between page refreshes
+    //             localStorage.setItem('currentUser', JSON.stringify(user));
+    //         }
 
-            return user;
-        }));
-    }
+    //         return user;
+    //     }));
+    // }
 
     logout() {
         // remove user from local storage to log user out
