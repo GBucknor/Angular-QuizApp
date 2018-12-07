@@ -48,27 +48,33 @@ export class CreateComponent implements OnInit {
           this.editQuestion(currentNum);
       });
       delBtn.addEventListener("click", () => {
-          //deleteQuestion(currentNum);
+          //this.deleteQuestion(currentNum);
       });
       editBtn.innerHTML = "Edit";
       delBtn.innerHTML = "Delete";
       $(cln).attr("id", currentNum);
       cln.appendChild(editBtn);
       cln.appendChild(delBtn);
-      // let collapseBtn = document.createElement("button");
-      // collapseBtn.classList.add("btn");
-      // collapseBtn.classList.add("btn-outline-primary");
-      // $(collapseBtn).attr("type", "button");
-      // $(collapseBtn).attr("data-toggle", "collapse");
-      // $(collapseBtn).attr("data-target", "#" + currentNum);
-      // $(collapseBtn).attr("aria-expanded", "false");
-      // $(collapseBtn).attr("aria-controls", currentNum);
-      // $(collapseBtn).attr("id", "collapse-" + currentNum);
-      // $(collapseBtn).html("Show Question");
-      // $(cln).attr("class", "collapse");
-      //document.getElementById("created-questions").appendChild(collapseBtn);
       document.getElementById("created-questions").appendChild(cln);
   }
+
+  /*
+  deleteQuestion(currentNum)
+  {
+      let cln = document.getElementById("question-box").cloneNode(true);
+      let collapseBtn = document.createElement("button");
+      collapseBtn.classList.add("btn");
+      collapseBtn.classList.add("btn-outline-primary");
+      $(collapseBtn).attr("type", "button");
+      $(collapseBtn).attr("data-toggle", "collapse");
+      $(collapseBtn).attr("data-target", "#" + currentNum);
+      $(collapseBtn).attr("aria-expanded", "false");
+      $(collapseBtn).attr("aria-controls", currentNum);
+      $(collapseBtn).attr("id", "collapse-" + currentNum);
+      $(collapseBtn).html("Show Question");
+      $(cln).attr("class", "collapse");
+      //document.getElementById("created-questions").appendChild(collapseBtn);
+  } */
 
   editQuestion(id)
   {
