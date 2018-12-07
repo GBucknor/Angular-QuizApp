@@ -14,19 +14,12 @@ export class CreateComponent implements OnInit {
 
   quizQuestions: Array<any>
   qBox: any
-  selectedImage: File
 
   constructor(private data: QuizService, private router: Router) {}
 
   ngOnInit() {
     this.qBox = document.getElementById("question-box");
     this.quizQuestions = []
-  }
-
-  onFileChanged(event) {
-    this.selectedImage = event.target.files[0]
-    document.getElementById('image-btn').innerHTML = this.selectedImage.name
-    console.log(this.selectedImage)
   }
 
   addQuestion() {
@@ -100,20 +93,12 @@ export class CreateComponent implements OnInit {
     let quiz = {
       "quizName": $('#quiz_name').val(),
       "numberOfQuestions": this.quizQuestions.length,
-      "quizDescription": $('#quiz_desc').val()
+      "quizDescription": $('#quiz_desc').val(),
+      "badgeBookId": JSON.parse(localStorage.getItem('currentUser'))['user']
     }
     this.data.addQuiz(quiz).subscribe((data) => {
       quizId = data['quizId']
-      this.uploadImage(quizId)
       this.storeQuestions(quizId)
-    })
-    this.router.navigate([''])
-  }
-
-  // Calls the badge upload request in the quiz service.
-  uploadImage(quizId) {
-    this.data.addQuizImage(quizId, this.selectedImage).subscribe((data) => {
-      console.log(data)
     })
   }
 

@@ -33,15 +33,15 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.auth.login((<HTMLInputElement>document.getElementById('user')).value, 
-      (<HTMLInputElement>document.getElementById('pass')).value)
-        .pipe(first())
-        .subscribe(
-            data => {
-              console.log(data)
-              //localStorage.setItem('user', JSON.stringify($('#user').val()));
-              window.location.replace("https://quiztastic.azurewebsites.net");
-              //window.location.replace('http://localhost:4200');
-            });
+    // this.auth.login((<HTMLInputElement>document.getElementById('user')).value, 
+    //   (<HTMLInputElement>document.getElementById('pass')).value)
+    //     .pipe(first())
+    //     .subscribe(
+    //         data => {
+    //           console.log(data)
+    //           //localStorage.setItem('user', JSON.stringify($('#user').val()));
+    //           window.location.replace("https://quiztastic.azurewebsites.net");
+    //           //window.location.replace('http://localhost:4200');
+    //         });
   }
 }
